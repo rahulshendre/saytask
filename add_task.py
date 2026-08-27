@@ -2,6 +2,8 @@
 import os
 import sys
 import json
+import warnings
+warnings.filterwarnings("ignore")
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
