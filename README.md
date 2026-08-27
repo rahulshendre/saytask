@@ -52,11 +52,23 @@ launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.rahul.voicetasks.pli
 
 ## Usage
 
-**Global hotkey (fastest):** `Ctrl+Option+K` -> speak -> `Ctrl+Option+K` again -> saves. Works system-wide.
+**Terminal (simplest):**
+```
+note buy coffee     # add a task (no quotes needed)
+tasks               # list pending tasks
+tasks all           # include completed
+```
+Add these to `~/.zshrc`:
+```bash
+note()  { /usr/bin/python3 /Users/rahulshendre/saytask/add_task.py "$*"; }
+tasks() { /usr/bin/python3 /Users/rahulshendre/saytask/list_tasks.py "$@"; }
+```
 
-Or click 🎤 in menubar:
+**Menubar app:** click 🎤 ->
 - **Record Task** -> speak -> wait 1-2s -> **Stop & Save**
 - **Add Text Task...** -> type -> Save
+
+**Global hotkey:** `Cmd+Ctrl+K` -> speak -> again -> saves. Needs Accessibility permission (flaky across rebuilds - terminal `note` is more reliable).
 
 ## Notes
 
