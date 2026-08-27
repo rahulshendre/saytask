@@ -52,13 +52,16 @@ launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.rahul.voicetasks.pli
 
 ## Usage
 
-Click 🎤 in menubar:
+**Global hotkey (fastest):** `Ctrl+Option+K` -> speak -> `Ctrl+Option+K` again -> saves. Works system-wide.
+
+Or click 🎤 in menubar:
 - **Record Task** -> speak -> wait 1-2s -> **Stop & Save**
 - **Add Text Task...** -> type -> Save
 
 ## Notes
 
 - Must run as `.app` bundle, not a bare `python3` LaunchAgent - background daemons can't capture mic audio on macOS.
+- Global hotkey needs **Accessibility** permission - grant it to `VoiceTasks.app` in System Settings -> Privacy -> Accessibility.
 - After editing `menubar_task.py`, rebuild (step 4) and restart the LaunchAgent.
 - Speak, then wait 1-2s before Stop - the recognizer needs time or returns empty.
 
