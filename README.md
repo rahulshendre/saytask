@@ -100,7 +100,18 @@ Add these functions to your `~/.zshrc` (adjust the path if you cloned elsewhere)
 cat >> ~/.zshrc <<'EOF'
 
 # saytask
-note()  { /usr/bin/python3 "$HOME/saytask/add_task.py" "$*"; }
+note() {
+  local text
+  if [ "$1" = "-c" ]; then
+    text="$(pbpaste)"
+    [ -z "$text" ] && { echo "clipboard is empty"; return 1; }
+  elif [ $# -eq 0 ]; then
+    echo "usage: note <task text>  |  note -c (clipboard)"; return 1
+  else
+    text="$*"
+  fi
+  /usr/bin/python3 "$HOME/saytask/add_task.py" "$text"
+}
 tasks() { /usr/bin/python3 "$HOME/saytask/list_tasks.py" "$@"; }
 EOF
 source ~/.zshrc
@@ -117,6 +128,7 @@ You now have the core workflow:
 
 ```shell
 note buy coffee        # add a task (no quotes needed)
+note -c                # add whatever's on your clipboard
 tasks                  # list pending tasks
 tasks all              # include completed tasks
 ```
