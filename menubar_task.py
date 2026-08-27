@@ -12,7 +12,7 @@ import AVFoundation
 from pynput import keyboard
 
 ADD_TASK_SCRIPT = "/Users/rahulshendre/saytask/add_task.py"
-HOTKEY = "<ctrl>+<alt>+k"  # Ctrl+Option+K toggles recording
+HOTKEY = "<cmd>+<ctrl>+k"  # Cmd+Ctrl+K toggles recording (avoids Rectangle's Ctrl+Option+K)
 
 
 class VoiceTaskApp(rumps.App):
