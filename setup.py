@@ -3,7 +3,7 @@ from setuptools import setup
 APP = ['menubar_task.py']
 OPTIONS = {
     'argv_emulation': False,
-    'packages': ['rumps', 'Speech', 'AVFoundation'],
+    'packages': ['rumps', 'Speech', 'AVFoundation', 'pynput'],
     'plist': {
         'CFBundleName': 'VoiceTasks',
         'CFBundleDisplayName': 'VoiceTasks',

@@ -9,8 +9,10 @@ warnings.filterwarnings("ignore")
 
 import Speech
 import AVFoundation
+from pynput import keyboard
 
 ADD_TASK_SCRIPT = "/Users/rahulshendre/saytask/add_task.py"
+HOTKEY = "<ctrl>+<alt>+k"  # Ctrl+Option+K toggles recording
 
 
 class VoiceTaskApp(rumps.App):
@@ -21,20 +23,33 @@ class VoiceTaskApp(rumps.App):
         self.request = None
         self._done_event = None
         self._result_holder = None
+        self.record_item = rumps.MenuItem("Record Task", callback=self.toggle_record)
         self.menu = [
-            rumps.MenuItem("Record Task", callback=self.toggle_record),
+            self.record_item,
             rumps.MenuItem("Add Text Task...", callback=self.text_task),
-            None
+            None,
         ]
+        self._start_hotkey_listener()
+
+    def _start_hotkey_listener(self):
+        def on_activate():
+            print("hotkey fired", flush=True)
+            self.toggle_record(None)
+        try:
+            self._hotkey = keyboard.GlobalHotKeys({HOTKEY: on_activate})
+            self._hotkey.start()
+            print(f"hotkey listener started: {HOTKEY}", flush=True)
+        except Exception as e:
+            print(f"hotkey listener failed: {e}", flush=True)
 
     def toggle_record(self, sender):
         print(f"toggle: is_recording={self.is_recording}", flush=True)
         if not self.is_recording:
-            sender.title = "Stop & Save"
+            self.record_item.title = "Stop & Save"
             self.title = "🔴"
             threading.Thread(target=self.start_recording, daemon=True).start()
         else:
-            sender.title = "Record Task"
+            self.record_item.title = "Record Task"
             self.title = "⏳"
             threading.Thread(target=self.stop_recording, daemon=True).start()
 
@@ -99,6 +114,7 @@ class VoiceTaskApp(rumps.App):
         print(f"recognized: '{text}'", flush=True)
         self.save_task(text)
         self.title = "🎤"
+        self.record_item.title = "Record Task"
 
     def save_task(self, text):
         text = text.strip()
