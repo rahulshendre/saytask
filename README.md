@@ -113,6 +113,7 @@ note() {
   /usr/bin/python3 "$HOME/saytask/add_task.py" "$text"
 }
 tasks() { /usr/bin/python3 "$HOME/saytask/list_tasks.py" "$@"; }
+gt()    { open "https://tasks.google.com/embed/"; }
 EOF
 source ~/.zshrc
 ```
@@ -131,6 +132,7 @@ note buy coffee        # add a task (no quotes needed)
 note -c                # add whatever's on your clipboard
 tasks                  # list pending tasks
 tasks all              # include completed tasks
+gt                     # open Google Tasks in the browser
 ```
 
 For most people, this is enough. To add voice capture, continue below.
