@@ -10,7 +10,7 @@ warnings.filterwarnings("ignore")
 import Speech
 import AVFoundation
 
-ADD_TASK_SCRIPT = "/Users/rahulshendre/claude-tasks/add_task.py"
+ADD_TASK_SCRIPT = "/Users/rahulshendre/saytask/add_task.py"
 
 
 class VoiceTaskApp(rumps.App):

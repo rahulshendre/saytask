@@ -6,15 +6,15 @@
     <string>com.rahul.voicetasks</string>
     <key>ProgramArguments</key>
     <array>
-        <string>/Users/rahulshendre/claude-tasks/dist/VoiceTasks.app/Contents/MacOS/VoiceTasks</string>
+        <string>/Users/rahulshendre/saytask/dist/VoiceTasks.app/Contents/MacOS/VoiceTasks</string>
     </array>
     <key>RunAtLoad</key>
     <true/>
     <key>KeepAlive</key>
     <true/>
     <key>StandardOutPath</key>
-    <string>/Users/rahulshendre/claude-tasks/voice_task.log</string>
+    <string>/Users/rahulshendre/saytask/voice_task.log</string>
     <key>StandardErrorPath</key>
-    <string>/Users/rahulshendre/claude-tasks/voice_task_err.log</string>
+    <string>/Users/rahulshendre/saytask/voice_task_err.log</string>
 </dict>
 </plist>
