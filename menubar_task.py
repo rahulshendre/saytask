@@ -28,8 +28,13 @@ class VoiceTaskApp(rumps.App):
             self.record_item,
             rumps.MenuItem("Add Text Task...", callback=self.text_task),
             None,
+            rumps.MenuItem("Open Google Tasks", callback=self.open_tasks),
+            None,
         ]
         self._start_hotkey_listener()
+
+    def open_tasks(self, _):
+        subprocess.run(["open", "https://tasks.google.com/embed/"])
 
     def _start_hotkey_listener(self):
         def on_activate():
